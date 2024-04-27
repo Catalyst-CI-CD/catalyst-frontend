@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { vi } from 'vitest';
 import Login, { ILoginFormInput } from '.';
 import { AuthContextProvider } from '@/contexts/AuthContext';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 // Mocks
 const mockLoginHandler = vi.fn();
@@ -27,9 +28,11 @@ describe('Login', () => {
   it('Should render email and password field and login button', async () => {
     render(
       <BrowserRouter>
-        <AuthContextProvider>
-          <Login />
-        </AuthContextProvider>
+        <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+          <AuthContextProvider>
+            <Login />
+          </AuthContextProvider>
+        </GoogleOAuthProvider>
       </BrowserRouter>,
     );
     const emailInput = screen.getByPlaceholderText('Email');
@@ -42,9 +45,11 @@ describe('Login', () => {
   it('should log in successfully when valid email and password are provided', async () => {
     render(
       <BrowserRouter>
-        <AuthContextProvider>
-          <Login />
-        </AuthContextProvider>
+        <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+          <AuthContextProvider>
+            <Login />
+          </AuthContextProvider>
+        </GoogleOAuthProvider>
       </BrowserRouter>,
     );
     const emailInput = screen.getByPlaceholderText('Email');
@@ -66,9 +71,11 @@ describe('Login', () => {
   it("shouldn't log in  when missing email", async () => {
     render(
       <BrowserRouter>
-        <AuthContextProvider>
-          <Login />
-        </AuthContextProvider>
+        <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+          <AuthContextProvider>
+            <Login />
+          </AuthContextProvider>
+        </GoogleOAuthProvider>
       </BrowserRouter>,
     );
 
@@ -85,9 +92,11 @@ describe('Login', () => {
   it("shouldn't log in  when missing password", async () => {
     render(
       <BrowserRouter>
-        <AuthContextProvider>
-          <Login />
-        </AuthContextProvider>
+        <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+          <AuthContextProvider>
+            <Login />
+          </AuthContextProvider>
+        </GoogleOAuthProvider>
       </BrowserRouter>,
     );
     const emailInput = screen.getByPlaceholderText('Email');
@@ -104,9 +113,11 @@ describe('Login', () => {
   it("shouldn't log in  when invalid email or password are provided", async () => {
     render(
       <BrowserRouter>
-        <AuthContextProvider>
-          <Login />
-        </AuthContextProvider>
+        <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+          <AuthContextProvider>
+            <Login />
+          </AuthContextProvider>
+        </GoogleOAuthProvider>
       </BrowserRouter>,
     );
     const emailInput = screen.getByPlaceholderText('Email');
