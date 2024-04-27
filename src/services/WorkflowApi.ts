@@ -105,9 +105,11 @@ interface IListWorkflowsResultsResponseBody {
 }
 export const listWorkflowsResults = async (
   userId: string,
+  status: string,
+  workflowId: string,
 ): Promise<Response<IListWorkflowsResultsResponseBody>> => {
   try {
-    const url = `/workflow-results?userId=${userId}`;
+    const url = `/workflow-results?userId=${userId}&status=${status}&workflowId=${workflowId}`;
     const response = await axiosInstance.get(url);
     return {
       status: 'success',

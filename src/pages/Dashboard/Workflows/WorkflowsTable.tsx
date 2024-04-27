@@ -22,7 +22,7 @@ const ColumnDefinition: columnType<IRowData>[] = [
 
     content: row => (
       <Link
-        to={`/workflows/edit-workflow/${row.data.id}`}
+        to={`/workflows/single-workflow/${row.data.id}`}
         className="hover:underline text-blue-200"
       >
         {row.data.name}
