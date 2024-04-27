@@ -29,7 +29,7 @@ const SingleWorkflow = () => {
       );
       setWorkflowRuns(rowsData);
     }
-  }, [user]);
+  }, [user, id]);
   useEffect(() => {
     loadWorkflowRuns();
   }, [loadWorkflowRuns]);
