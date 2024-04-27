@@ -26,12 +26,13 @@ const GoogleLogin = () => {
     scope:
       'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
     state: 'authState',
+    flow: 'auth-code',
   });
   return (
     <button
       type="button"
       className="flex items-center justify-center gap-3 w-full font-medium border-2 border-solid border-accent p-3 my-3 text-accent rounded-full transition-all duration-200 hover:bg-accent hover:shadow-lg hover:text-white"
-      onClick={() => googleLoginHook()}
+      onClick={googleLoginHook}
     >
       <AiOutlineGoogle className="text-2xl" />
       <span>Log in with Google</span>

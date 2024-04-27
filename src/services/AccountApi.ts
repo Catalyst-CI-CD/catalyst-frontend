@@ -3,7 +3,7 @@ import { ILoginFormInput } from '@/pages/Login';
 import { ISignUpFormInput } from '@/pages/Signup';
 import axiosInstance, { Response } from './axiosInstance';
 import { UserType } from '@/contexts/AuthContext';
-import { TokenResponse } from '@react-oauth/google';
+import { CodeResponse } from '@react-oauth/google';
 
 interface ISignUpRequestBody {
   name: string;
@@ -96,9 +96,9 @@ export const FetchUserData = async (
 };
 
 export const ContinueWithGoogleHandler = async (
-  credentials: Omit<TokenResponse, 'error' | 'error_description' | 'error_uri'>,
+  credentials: Omit<CodeResponse, 'error' | 'error_description' | 'error_uri'>,
 ): Promise<Response<ILoginResponseBody>> => {
-  const url = `/users/login/google/callback?state=${credentials.state}&code=${credentials.access_token}&prompt=${credentials.prompt}&scope=${credentials.scope}`;
+  const url = `/users/login/google/callback?state=${credentials.state}&code=${credentials.code}&scope=${credentials.scope}`;
   try {
     const response = await axiosInstance.get(url);
     return { status: 'success', data: response.data };
