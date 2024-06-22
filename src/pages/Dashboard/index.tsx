@@ -6,6 +6,7 @@ import JobDetails from './JobDetails';
 import Workflows from './Workflows';
 import AddWorkFlow from '../AddWorkflow';
 import EditWorkFlow from '../EditWorkflow';
+import SingleWorkflow from './SingleWorkflow';
 import WithAuth from '@/HOCs/WithAuth';
 import NotFound from '../NotFound';
 
@@ -21,6 +22,7 @@ const Dashboard = WithAuth(() => {
           <Route path="runs/:run_id/jobs/:job_id" element={<JobDetails />} />
           <Route path="add-workflow" element={<AddWorkFlow />} />
           <Route path="edit-workflow/:id" element={<EditWorkFlow />} />
+          <Route path="single-workflow/:id" element={<SingleWorkflow />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

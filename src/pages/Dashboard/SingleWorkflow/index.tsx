@@ -4,14 +4,17 @@ import { listWorkflowsResults } from '@/services/WorkflowApi';
 import Spinner from '@/components/Spinner';
 import noDataImage from '@/assets/no-data.jpg';
 import { useAuthContext } from '@/contexts/AuthContext';
+import { useParams } from 'react-router-dom';
 
-const Runs = () => {
+const SingleWorkflow = () => {
+  const { id } = useParams<{ id: string }>();
+
   const { user } = useAuthContext();
   const [workflowRuns, setWorkflowRuns] = useState<IRowData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const loadWorkflowRuns = useCallback(async () => {
     setIsLoading(true);
-    const result = await listWorkflowsResults(user!.id.toString(), '', '');
+    const result = await listWorkflowsResults(user!.id.toString(), '', id!);
     setIsLoading(false);
     if (result.status === 'success') {
       const rowsData: IRowData[] = result.data.workflows_results.map(
@@ -26,7 +29,7 @@ const Runs = () => {
       );
       setWorkflowRuns(rowsData);
     }
-  }, [user]);
+  }, [user, id]);
   useEffect(() => {
     loadWorkflowRuns();
   }, [loadWorkflowRuns]);
@@ -55,4 +58,4 @@ const Runs = () => {
   );
 };
 
-export default Runs;
+export default SingleWorkflow;
